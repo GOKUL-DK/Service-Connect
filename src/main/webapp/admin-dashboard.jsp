@@ -111,49 +111,55 @@
             </div>
         <%  } %>
 
-        <!-- Metric Cards Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; margin-bottom: 2.25rem;">
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">🛠</div>
-                <div class="metric-data">
-                    <span class="metric-label">Active Services</span>
-                    <span class="metric-value"><%= services != null ? services.size() : 0 %></span>
+        <!-- Executive KPI Intelligence Grid -->
+        <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Active Services</span>
+                    <span class="kpi-card-value"><%= services != null ? services.size() : 0 %></span>
+                    <span class="kpi-card-sub">🛠️ Catalog Trades</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">🛠</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">👷</div>
-                <div class="metric-data">
-                    <span class="metric-label">Registered Providers</span>
-                    <span class="metric-value"><%= providers != null ? providers.size() : 0 %></span>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Technicians</span>
+                    <span class="kpi-card-value"><%= providers != null ? providers.size() : 0 %></span>
+                    <span class="kpi-card-sub">👷 Registered Roster</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">👷</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">📊</div>
-                <div class="metric-data">
-                    <span class="metric-label">Total Bookings</span>
-                    <span class="metric-value"><%= bookings != null ? bookings.size() : 0 %></span>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Total Bookings</span>
+                    <span class="kpi-card-value"><%= bookings != null ? bookings.size() : 0 %></span>
+                    <span class="kpi-card-sub">📊 Total Dispatches</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">📊</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">👥</div>
-                <div class="metric-data">
-                    <span class="metric-label">Registered Accounts</span>
-                    <span class="metric-value"><%= users != null ? users.size() : 0 %></span>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">User Accounts</span>
+                    <span class="kpi-card-value"><%= users != null ? users.size() : 0 %></span>
+                    <span class="kpi-card-sub">👥 Customer Logins</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">👥</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(239, 68, 68, 0.1); color: var(--danger);">🚨</div>
-                <div class="metric-data">
-                    <span class="metric-label">Pending Complaints</span>
-                    <span class="metric-value" style="color: var(--danger);"><%= pendingComplaintsCount %></span>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Pending Disputes</span>
+                    <span class="kpi-card-value" style="color: var(--danger);"><%= pendingComplaintsCount %></span>
+                    <span class="kpi-card-sub">🚨 Action Needed</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(239, 68, 68, 0.1); color: var(--danger);">🚨</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(16, 185, 129, 0.15); color: #059669;">💰</div>
-                <div class="metric-data">
-                    <span class="metric-label">Gross Revenue (GMV)</span>
-                    <span class="metric-value" style="font-size: 1.45rem; padding-top: 0.2rem; color: #059669;">₹<%= String.format("%.0f", totalRevenue) %></span>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Gross Volume</span>
+                    <span class="kpi-card-value" style="font-size: 1.55rem; color: #059669;">₹<%= String.format("%.0f", totalRevenue) %></span>
+                    <span class="kpi-card-sub">💰 Total GMV</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(16, 185, 129, 0.15); color: #059669;">💰</div>
             </div>
         </div>
 

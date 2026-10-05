@@ -29,6 +29,21 @@
     // Retrieve preferences saved in Cookies
     String preferredService = CookieUtil.getCookieValue(request, "preferredService");
     String preferredRadius = CookieUtil.getCookieValue(request, "preferredRadius");
+
+    int activeBookingsCount = 0;
+    int completedBookingsCount = 0;
+    double totalSpent = 0.0;
+    if (myBookings != null) {
+        for (Booking b : myBookings) {
+            String st = b.getStatus();
+            if ("COMPLETED".equalsIgnoreCase(st)) {
+                completedBookingsCount++;
+                totalSpent += (b.getTotalAmount() > 0 ? b.getTotalAmount() : 354.00);
+            } else if (!"CANCELLED".equalsIgnoreCase(st)) {
+                activeBookingsCount++;
+            }
+        }
+    }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,6 +124,43 @@
                 ✅ Your grievance complaint has been securely escalated to the Administrator for investigation.
             </div>
         <% } %>
+
+        <!-- Executive KPI Metrics Grid -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Active Requests</span>
+                    <span class="kpi-card-value"><%= activeBookingsCount %></span>
+                    <span class="kpi-card-sub">⚡ Dispatched & In-Progress</span>
+                </div>
+                <div class="kpi-card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">📋</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Completed Services</span>
+                    <span class="kpi-card-value"><%= completedBookingsCount %></span>
+                    <span class="kpi-card-sub">✓ Verified by Secure OTP</span>
+                </div>
+                <div class="kpi-card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">✅</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Total Expenditure</span>
+                    <span class="kpi-card-value">₹<%= String.format("%.2f", totalSpent) %></span>
+                    <span class="kpi-card-sub">💳 Digital Invoice Receipts</span>
+                </div>
+                <div class="kpi-card-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">💰</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Current Radius</span>
+                    <span class="kpi-card-value"><%= preferredRadius != null ? preferredRadius : "5" %> km</span>
+                    <span class="kpi-card-sub">📍 Haversine GPS Range</span>
+                </div>
+                <div class="kpi-card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">🎯</div>
+            </div>
+        </div>
+
         <!-- Service Search Panel -->
         <section class="card" style="border-top: 4px solid var(--primary); box-shadow: var(--shadow-lg);">
             <div class="card-header">
@@ -274,7 +326,7 @@
                                 String pSafeName = b.getProviderName() != null ? b.getProviderName().replace("'", "\\'") : "Technician";
                             %>
                                 <tr>
-                                    <td><strong style="color: var(--secondary);">#<%= b.getBookingId() %></strong></td>
+                                    <td><code style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--secondary); background: var(--bg-card-alt); padding: 0.25rem 0.5rem; border-radius: 6px; border: 1px solid var(--border);">#<%= b.getBookingId() %></code></td>
                                     <td>
                                         <span style="font-weight: 700; color: var(--primary);"><%= b.getServiceName() %></span>
                                         <% if (b.isEmergency()) { %>
@@ -282,14 +334,14 @@
                                         <% } %>
                                     </td>
                                     <td>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                            <div style="width: 26px; height: 26px; border-radius: 50%; background: var(--primary-light); color: var(--primary); font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center;">
-                                                <%= (b.getProviderName() != null && !b.getProviderName().isEmpty()) ? b.getProviderName().substring(0, 1) : "P" %>
+                                        <div style="display: flex; align-items: center; gap: 0.6rem;">
+                                            <div class="avatar-circle-sm">
+                                                <%= (b.getProviderName() != null && !b.getProviderName().isEmpty()) ? b.getProviderName().substring(0, 1).toUpperCase() : "P" %>
                                             </div>
                                             <strong><%= b.getProviderName() != null ? b.getProviderName() : "Technician" %></strong>
                                         </div>
                                     </td>
-                                    <td><code style="background: var(--bg-card-alt); padding: 0.2rem 0.5rem; border-radius: 4px;"><%= b.getProviderPhone() %></code></td>
+                                    <td><code style="background: var(--bg-card-alt); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace;"><%= b.getProviderPhone() %></code></td>
                                     <td><%= b.getLocationName() %></td>
                                     <td>
                                         <span class="badge badge-warning" style="font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px;">
@@ -297,12 +349,13 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <strong style="color: var(--success); font-size: 0.95rem;">
+                                        <strong style="color: var(--success); font-size: 0.95rem; font-family: 'Outfit', sans-serif;">
                                             ₹<%= String.format("%.2f", b.getTotalAmount() > 0 ? b.getTotalAmount() : 354.00) %>
                                         </strong>
                                     </td>
                                     <td>
-                                        <span class="badge badge-<%= b.getStatus().toLowerCase() %>">
+                                        <span class="status-pill badge-<%= b.getStatus().toLowerCase() %>">
+                                            <span class="status-pill-dot <%= "IN_PROGRESS".equalsIgnoreCase(b.getStatus()) || "REQUESTED".equalsIgnoreCase(b.getStatus()) ? "pulse" : "" %>"></span>
                                             <%= b.getStatus() %>
                                         </span>
                                     </td>

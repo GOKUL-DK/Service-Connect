@@ -46,77 +46,137 @@
     <!-- Hero Section -->
     <main class="container">
         <section class="hero">
-            <div class="hero-pill">⚡ Location-Radius Intelligent Matching</div>
-            <h1>Instant Service Providers <br><span class="gradient-text">Right in Your Neighborhood</span></h1>
+            <div class="hero-pill">⚡ Location-Radius Intelligent Matching & Dispatch</div>
+            <h1>Instant Service Experts <br><span class="gradient-text">Right in Your Neighborhood</span></h1>
             <p>
-                ServiceConnect matches customers with verified local technicians within your selected radius using real-time GPS coordinates, availability algorithms, and automated workflows.
+                ServiceConnect matches residents with verified local technicians within your selected radius using real-time GPS coordinates, live availability tracking, and automated dispatch workflows.
             </p>
             <div class="hero-cta">
-                <a href="login.jsp" class="btn btn-primary" style="padding: 0.85rem 2rem; font-size: 1.05rem;">
-                    Find a Service Now →
+                <a href="login.jsp" class="btn btn-primary" style="padding: 0.9rem 2.25rem; font-size: 1.05rem;">
+                    🔍 Find a Service Now →
+                </a>
+                <a href="login.jsp" class="btn btn-secondary" style="padding: 0.9rem 1.85rem; font-size: 1.025rem;">
+                    🛠️ Join as Service Worker
                 </a>
             </div>
 
-            <!-- Feature Highlight Strip -->
-            <div class="feature-strip">
-                <div class="feature-box">
-                    <div class="feature-icon-wrapper" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">📍</div>
-                    <div class="feature-title">Haversine GPS Radius</div>
-                    <div class="feature-desc">Accurate spherical distance calculation ensuring closest providers are allocated first.</div>
+            <!-- Platform Live Stats Strip -->
+            <div class="hero-stat-strip">
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">15 Min</div>
+                    <div class="hero-stat-label">⚡ Average Dispatch Time</div>
                 </div>
-                <div class="feature-box">
-                    <div class="feature-icon-wrapper" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">⚡</div>
-                    <div class="feature-title">Live AJAX Dispatch</div>
-                    <div class="feature-desc">Dynamic DOM card rendering without full page reload via asynchronous Fetch API.</div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">1,200+</div>
+                    <div class="hero-stat-label">🏠 Bookings Fulfilled</div>
                 </div>
-                <div class="feature-box">
-                    <div class="feature-icon-wrapper" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">📜</div>
-                    <div class="feature-title">XML Rule Engine</div>
-                    <div class="feature-desc">Externalized business rules, durations, and fee schedules parsed with Java DOM & XPath.</div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">4.9 ★</div>
+                    <div class="hero-stat-label">⭐ Customer Rating</div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">100%</div>
+                    <div class="hero-stat-label">🛡️ Verified Technicians</div>
+                </div>
+            </div>
+
+            <!-- 3-Step Interactive Process -->
+            <div class="workflow-section">
+                <div style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.9rem; background: rgba(79, 70, 229, 0.08); border-radius: 9999px; color: var(--primary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem;">
+                    💡 Simple & Seamless
+                </div>
+                <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--secondary); letter-spacing: -0.02em;">How ServiceConnect Operates</h2>
+                <p style="color: var(--text-muted); font-size: 1rem; max-width: 600px; margin: 0.5rem auto 0;">Three automated stages ensuring rapid, safe, and transparent local technician allocation.</p>
+
+                <div class="workflow-grid">
+                    <div class="workflow-card">
+                        <div class="workflow-step-num">01</div>
+                        <div class="workflow-card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">📍</div>
+                        <div class="workflow-card-title">1. Set Radius & Landmark</div>
+                        <div class="workflow-card-desc">Enter your street or tap <em>Use My GPS</em>. The Haversine spherical algorithm calculates exact distances to available providers within 2km - 15km.</div>
+                    </div>
+                    <div class="workflow-card">
+                        <div class="workflow-step-num">02</div>
+                        <div class="workflow-card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">💬</div>
+                        <div class="workflow-card-title">2. Real-Time Allocation & Chat</div>
+                        <div class="workflow-card-desc">Review technician profiles and rates calculated by the XML Rule Engine. Message directly via live chat with sound chime alerts.</div>
+                    </div>
+                    <div class="workflow-card">
+                        <div class="workflow-step-num">03</div>
+                        <div class="workflow-card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">🔑</div>
+                        <div class="workflow-card-title">3. Secure OTP Handshake</div>
+                        <div class="workflow-card-desc">Upon job completion, exchange your confidential 4-digit security code for verification, instant billing receipt, and review logging.</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Service Offerings Grid -->
-        <section class="card">
+        <!-- Service Offerings Catalog -->
+        <section class="card" style="box-shadow: var(--shadow-lg); border-top: 4px solid var(--primary);">
             <div class="card-header">
                 <div>
-                    <h2 class="card-title">Available Local Services</h2>
+                    <h2 class="card-title">🛠️ Available Trade Specializations</h2>
                     <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">
-                        Verified trade experts ready for on-demand residential & commercial dispatch.
+                        Verified local professionals ready for immediate dispatch across residential and commercial properties.
                     </p>
                 </div>
-                <span class="badge badge-available"><%= services.size() %> Services Online</span>
+                <span class="badge badge-available"><%= services.size() %> Trades Active</span>
             </div>
             
             <div class="providers-grid">
                 <% for (Service s : services) { 
                     String icon = "🛠";
                     String name = s.getServiceName();
-                    if (name.contains("Plumb")) icon = "🚰";
-                    else if (name.contains("Elect")) icon = "⚡";
-                    else if (name.contains("Carp")) icon = "🪚";
-                    else if (name.contains("AC")) icon = "❄️";
-                    else if (name.contains("Appliance")) icon = "🧺";
-                    else if (name.contains("Computer")) icon = "💻";
-                    else if (name.contains("Paint")) icon = "🎨";
-                    else if (name.contains("Clean")) icon = "🧹";
-                    else if (name.contains("Vehicle")) icon = "🚗";
-                    else if (name.contains("Home")) icon = "🏠";
+                    String startingPrice = "₹299";
+                    if (name.contains("Plumb")) { icon = "🚰"; startingPrice = "₹249"; }
+                    else if (name.contains("Elect")) { icon = "⚡"; startingPrice = "₹299"; }
+                    else if (name.contains("Carp")) { icon = "🪚"; startingPrice = "₹349"; }
+                    else if (name.contains("AC")) { icon = "❄️"; startingPrice = "₹499"; }
+                    else if (name.contains("Appliance")) { icon = "🧺"; startingPrice = "₹399"; }
+                    else if (name.contains("Computer")) { icon = "💻"; startingPrice = "₹449"; }
+                    else if (name.contains("Paint")) { icon = "🎨"; startingPrice = "₹599"; }
+                    else if (name.contains("Clean")) { icon = "🧹"; startingPrice = "₹349"; }
+                    else if (name.contains("Vehicle")) { icon = "🚗"; startingPrice = "₹399"; }
+                    else if (name.contains("Home")) { icon = "🏠"; startingPrice = "₹499"; }
                 %>
-                    <div class="feature-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="service-card-modern">
                         <div>
-                            <div style="font-size: 2rem; margin-bottom: 0.75rem;"><%= icon %></div>
-                            <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.4rem;"><%= s.getServiceName() %></h3>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;"><%= s.getDescription() %></p>
+                            <div class="service-card-header">
+                                <div class="service-icon-box"><%= icon %></div>
+                                <span class="service-price-pill">From <%= startingPrice %></span>
+                            </div>
+                            <h3 class="service-card-title"><%= s.getServiceName() %></h3>
+                            <p class="service-card-desc"><%= s.getDescription() %></p>
                         </div>
-                        <div style="margin-top: 1.25rem;">
-                            <a href="login.jsp" class="btn btn-secondary btn-block" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+                        <div style="margin-top: 1rem;">
+                            <a href="login.jsp" class="btn btn-secondary btn-block" style="font-size: 0.885rem; padding: 0.6rem 1rem;">
                                 Request <%= s.getServiceName() %> →
                             </a>
                         </div>
                     </div>
                 <% } %>
+            </div>
+        </section>
+
+        <!-- Trust & Security Commitment Strip -->
+        <section class="card" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(6, 182, 212, 0.04) 100%); border: 1.5px dashed rgba(99, 102, 241, 0.35);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+                <div style="max-width: 650px;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem;">
+                        🛡️ Safety, Transparency & Dispute Protection
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.4rem;">
+                        Built with Customer & Provider Protection at Core
+                    </h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+                        Every service request is governed by external XML business rules with fixed duration estimates and fair pricing. In case of issues, our dedicated Administrator Grievance Console provides quick dispute review and worker roster moderation.
+                    </p>
+                </div>
+                <div>
+                    <a href="login.jsp" class="btn btn-primary" style="padding: 0.85rem 1.85rem;">
+                        Get Started Today →
+                    </a>
+                </div>
             </div>
         </section>
     </main>

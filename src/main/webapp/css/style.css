@@ -3,7 +3,7 @@
    Location-Based Multi-Service Booking & Provider Allocation
    ========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
     /* Brand Palette */
@@ -73,12 +73,23 @@
     -webkit-font-smoothing: antialiased;
 }
 
+h1, h2, h3, h4, h5, h6, 
+.card-title, .nav-brand, .metric-value, .hero h1, 
+.kpi-card-value, .workflow-card-title, .service-card-title {
+    font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+    letter-spacing: -0.025em;
+}
+
+code, pre, .font-mono, .otp-badge {
+    font-family: 'JetBrains Mono', monospace;
+}
+
 body {
     background-color: var(--bg-page);
     background-image: 
-        radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.04) 0%, transparent 35%),
-        radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.04) 0%, transparent 35%),
-        radial-gradient(circle at 50% 50%, rgba(248, 250, 252, 0.9) 0%, transparent 100%);
+        radial-gradient(circle at 10% 8%, rgba(99, 102, 241, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 12%, rgba(6, 182, 212, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(248, 250, 252, 0.95) 0%, transparent 100%);
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
@@ -196,18 +207,21 @@ body {
    Cards & Panels
    ========================================================== */
 .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
     padding: 2rem;
     margin-bottom: 2rem;
     position: relative;
-    transition: var(--transition);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 20px 35px -5px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+    border-color: rgba(99, 102, 241, 0.25);
 }
 
 .card-header {
@@ -225,7 +239,7 @@ body {
     font-size: 1.35rem;
     font-weight: 800;
     color: var(--secondary);
-    letter-spacing: -0.5px;
+    letter-spacing: -0.02em;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -737,20 +751,23 @@ body {
    Metric Cards for Admin & Dashboards
    ========================================================== */
 .metric-card {
-    background: #fff;
+    background: #ffffff;
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
-    padding: 1.5rem;
+    padding: 1.35rem 1.5rem;
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .metric-card:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
+    border-color: rgba(99, 102, 241, 0.25);
 }
 
 .metric-icon {
@@ -784,6 +801,321 @@ body {
     letter-spacing: -1px;
     line-height: 1.1;
     margin-top: 0.25rem;
+}
+
+/* ==========================================================
+   Executive KPI Summary Cards
+   ========================================================== */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.kpi-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 1.35rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary-gradient);
+    border-radius: 4px 0 0 4px;
+    opacity: 0.85;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.kpi-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-card-title {
+    font-size: 0.785rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.kpi-card-value {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--secondary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.kpi-card-sub {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.kpi-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+/* ==========================================================
+   Hero & Landing Page UI Components
+   ========================================================== */
+.hero-stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin: 2.5rem 0 3rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
+}
+
+.hero-stat-item {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-right: 1px solid var(--border-light);
+}
+
+.hero-stat-item:last-child {
+    border-right: none;
+}
+
+.hero-stat-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 900;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+}
+
+.hero-stat-label {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+}
+
+.workflow-section {
+    margin: 3.5rem 0 2.5rem;
+    text-align: center;
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.workflow-card {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 2rem 1.75rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workflow-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(99, 102, 241, 0.35);
+}
+
+.workflow-step-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(99, 102, 241, 0.15);
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+}
+
+.workflow-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.workflow-card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.workflow-card-desc {
+    font-size: 0.885rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Service Offering Card */
+.service-card-modern {
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-modern:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(79, 70, 229, 0.35);
+}
+
+.service-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.service-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    background: rgba(79, 70, 229, 0.08);
+}
+
+.service-price-pill {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.service-card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 0.4rem;
+}
+
+.service-card-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+}
+
+/* ==========================================================
+   User & Provider Avatars & Status Pills
+   ========================================================== */
+.avatar-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.avatar-circle-sm {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.status-pill-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+}
+
+.status-pill-dot.pulse {
+    animation: statusPulse 1.6s infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(1.3);
+    }
 }
 
 /* ==========================================================

@@ -116,30 +116,44 @@
             <div class="alert alert-danger">⚠️ Action could not be processed. Please try again.</div>
         <% } %>
 
-        <!-- Metrics Strip -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">📋</div>
-                <div class="metric-data">
-                    <span class="metric-label">Assigned Queue</span>
-                    <span class="metric-value"><%= jobs != null ? jobs.size() : 0 %></span>
+        <!-- Executive KPI Metrics Strip -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Assigned Queue</span>
+                    <span class="kpi-card-value"><%= jobs != null ? jobs.size() : 0 %></span>
+                    <span class="kpi-card-sub">⚡ Customer Task Dispatches</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">📋</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">⏱️</div>
-                <div class="metric-data">
-                    <span class="metric-label">Operating Shift</span>
-                    <span class="metric-value" style="font-size: 1.4rem; padding-top: 0.2rem;"><%= fromTime %> - <%= untilTime %></span>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Operating Shift</span>
+                    <span class="kpi-card-value" style="font-size: 1.5rem;"><%= fromTime %> - <%= untilTime %></span>
+                    <span class="kpi-card-sub">⏱️ Active Daily Schedule</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">⏱️</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">📡</div>
-                <div class="metric-data">
-                    <span class="metric-label">Current Dispatch Status</span>
-                    <span class="metric-value" style="font-size: 1.35rem; padding-top: 0.2rem;">
-                        <span id="metricStatusBadge" class="badge badge-<%= provStatus.toLowerCase() %>"><%= provStatus %></span>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Dispatch Status</span>
+                    <span class="kpi-card-value" style="font-size: 1.35rem;">
+                        <span id="metricStatusBadge" class="status-pill badge-<%= provStatus.toLowerCase() %>">
+                            <span class="status-pill-dot <%= "AVAILABLE".equalsIgnoreCase(provStatus) ? "pulse" : "" %>"></span>
+                            <%= provStatus %>
+                        </span>
                     </span>
+                    <span class="kpi-card-sub">📡 Live Radar Signal</span>
                 </div>
+                <div class="kpi-card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">📡</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-card-content">
+                    <span class="kpi-card-title">Technician Profile</span>
+                    <span class="kpi-card-value" style="font-size: 1.35rem; color: var(--primary);"><%= provider != null ? provider.getServiceName() : "Service" %></span>
+                    <span class="kpi-card-sub">🛠️ Verified Trade</span>
+                </div>
+                <div class="kpi-card-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">⭐</div>
             </div>
         </div>
 
@@ -165,25 +179,43 @@
                 <% } else { %>
                     <div style="display: flex; flex-direction: column; gap: 1.25rem;">
                         <% for (Booking job : jobs) { %>
-                            <div style="border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.5rem; background: #fff; box-shadow: var(--shadow-sm); transition: var(--transition);">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+                            <div style="border: 1px solid var(--border-light); border-left: 4px solid var(--primary); border-radius: var(--radius-sm); padding: 1.5rem; background: #fff; box-shadow: var(--shadow-sm); transition: var(--transition);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
                                     <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                        <strong style="font-size: 1.2rem; color: var(--secondary);">Booking #<%= job.getBookingId() %></strong>
+                                        <code style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: var(--secondary); background: var(--bg-card-alt); padding: 0.2rem 0.55rem; border-radius: 6px; border: 1px solid var(--border);">#<%= job.getBookingId() %></code>
                                         <span class="badge badge-requested" style="font-size: 0.75rem;"><%= job.getServiceName() %></span>
                                         <% if (job.isEmergency()) { %>
                                             <span class="badge badge-emergency" style="font-size: 0.75rem;">🚨 EMERGENCY SOS</span>
                                         <% } %>
                                     </div>
-                                    <span class="badge badge-<%= job.getStatus().toLowerCase() %>">
+                                    <span class="status-pill badge-<%= job.getStatus().toLowerCase() %>">
+                                        <span class="status-pill-dot <%= "IN_PROGRESS".equalsIgnoreCase(job.getStatus()) || "REQUESTED".equalsIgnoreCase(job.getStatus()) ? "pulse" : "" %>"></span>
                                         <%= job.getStatus() %>
                                     </span>
                                 </div>
 
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); background: var(--bg-card-alt); padding: 0.85rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem;">
-                                    <div>👤 <strong>Customer:</strong> <span style="color: var(--secondary); font-weight: 600;"><%= job.getUserName() %></span></div>
-                                    <div>📍 <strong>Location:</strong> <span style="color: var(--secondary); font-weight: 600;"><%= job.getLocationName() %></span> (<%= job.getDistance() %> km)</div>
-                                    <div>⏰ <strong>Requested:</strong> <%= job.getRequestedTime() %></div>
-                                    <div>💰 <strong>Total Bill:</strong> <strong style="color: var(--success);">₹<%= String.format("%.2f", job.getTotalAmount() > 0 ? job.getTotalAmount() : 354.00) %></strong></div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); background: var(--bg-card-alt); padding: 0.9rem 1.1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <div class="avatar-circle-sm">
+                                            <%= (job.getUserName() != null && !job.getUserName().isEmpty()) ? job.getUserName().substring(0, 1).toUpperCase() : "C" %>
+                                        </div>
+                                        <div>
+                                            <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-light); display: block;">Customer</span>
+                                            <strong style="color: var(--secondary);"><%= job.getUserName() %></strong>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-light); display: block;">Destination & Range</span>
+                                        <strong style="color: var(--secondary);"><%= job.getLocationName() %></strong> <span class="badge badge-confirmed" style="font-size: 0.65rem; padding: 0.1rem 0.4rem;"><%= job.getDistance() %> km</span>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-light); display: block;">Appointment Time</span>
+                                        <strong style="color: var(--secondary);"><%= job.getRequestedTime() %></strong>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-light); display: block;">Total Fare</span>
+                                        <strong style="color: var(--success); font-family: 'Outfit', sans-serif; font-size: 1.05rem;">₹<%= String.format("%.2f", job.getTotalAmount() > 0 ? job.getTotalAmount() : 354.00) %></strong>
+                                    </div>
                                 </div>
 
                                 <!-- Workflow Buttons: ACCEPT -> START -> COMPLETE & In-App Chat -->
