@@ -164,4 +164,16 @@ To run with visible browser window:
 ```bash
 mvn test -Dtest=ServiceConnectTest -Dheadless=false
 ```
->>>>>>> 0a22f98 (Initial commit: ServiceConnect location-based service allocation system with real-time chat, grievance resolution, and dual registration)
+
+---
+
+## 5. Demo Test Credentials
+
+The application includes pre-configured accounts for testing each role:
+
+| Role | Username | Password | Features & Workflows |
+| :--- | :--- | :--- | :--- |
+| **Customer** | `john` | `password123` | Customer Dashboard, Dark Leaflet Map, Haversine Radius Matching, Live Chat, OTP Handshake |
+| **Service Worker (Electrician)** | `ramesh` | `pass123` | Provider Dashboard, Job Queue, Direct Customer Messaging, Inline Incident Escalation |
+| **Service Worker (Plumber)** | `suresh` | `pass123` | Job Queue, Shift Hours / Availability Status Management, Task State Transitions |
+| **Administrator** | `admin` | `admin123` | Analytics Console, Neon Chart.js Data Visualizations, Grievance Dispute Moderation |
