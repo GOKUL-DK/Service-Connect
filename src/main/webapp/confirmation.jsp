@@ -53,10 +53,10 @@
             <div id="bookingNotificationBanner" class="alert alert-success" style="display: none; margin-bottom: 1.25rem;"></div>
 
             <div style="text-align: center; margin-bottom: 1.75rem;">
-                <div style="width: 64px; height: 64px; background: var(--success-bg); border: 2px solid var(--success-border); color: #16a34a; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 0.85rem; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2);">
+                <div style="width: 64px; height: 64px; background: var(--success-bg); border: 2px solid var(--success-border); color: #10b981; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 0.85rem; box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);">
                     ✓
                 </div>
-                <h1 class="card-title" style="font-size: 1.8rem; color: #15803d; justify-content: center; margin-bottom: 0.35rem;" id="bookingConfirmedHeading">
+                <h1 class="card-title" style="font-size: 1.8rem; color: #10b981; justify-content: center; margin-bottom: 0.35rem;" id="bookingConfirmedHeading">
                     Booking Confirmed
                 </h1>
                 <p style="color: var(--text-muted); font-size: 0.925rem;">
@@ -65,14 +65,14 @@
             </div>
 
             <!-- Completion Security OTP Box -->
-            <div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%); border: 1.5px dashed var(--primary); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem; text-align: center;">
-                <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">🔑 Service Completion OTP</div>
+            <div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(6, 182, 212, 0.12) 100%); border: 1.5px dashed var(--primary); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem; text-align: center;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">🔑 Service Completion OTP</div>
                 <div style="font-size: 2.2rem; font-weight: 900; letter-spacing: 6px; color: var(--secondary); font-family: 'JetBrains Mono', monospace;"><%= booking.getOtp() %></div>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.25rem 0 0;">Share this 4-digit security code with <%= booking.getProviderName() %> upon service completion.</p>
             </div>
 
             <!-- Digital Receipt Box -->
-            <div style="background: var(--bg-card-alt); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.75rem;">
+            <div style="background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.75rem;">
                 <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 0.85rem; margin-bottom: 0.85rem;">
                     <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">Booking Reference</span>
                     <strong id="liveBookingId" style="font-size: 1.2rem; color: var(--secondary); font-family: 'JetBrains Mono', monospace;">#<%= booking.getBookingId() %></strong>
@@ -90,7 +90,7 @@
 
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem;">
                     <span style="color: var(--text-muted); font-size: 0.9rem;">Provider Phone:</span>
-                    <code style="background: #fff; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border);"><%= booking.getProviderPhone() %></code>
+                    <code style="background: rgba(15, 23, 42, 0.6); color: #a5b4fc; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace;"><%= booking.getProviderPhone() %></code>
                 </div>
 
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem;">
@@ -127,7 +127,7 @@
             </div>
 
             <!-- In-App Live Direct Chat Box -->
-            <div style="background: #fff; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
+            <div style="background: rgba(15, 23, 42, 0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-md);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
                     <strong style="color: var(--secondary); font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
                         💬 Direct Dispatch Chat with <%= booking.getProviderName() %>
@@ -144,7 +144,7 @@
             </div>
 
             <!-- Post-Service Review Card -->
-            <div id="reviewCard" style="background: #fff; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem; display: <%= "COMPLETED".equalsIgnoreCase(booking.getStatus()) ? "block" : "none" %>;">
+            <div id="reviewCard" style="background: rgba(15, 23, 42, 0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem; display: <%= "COMPLETED".equalsIgnoreCase(booking.getStatus()) ? "block" : "none" %>;">
                 <h3 style="font-size: 1rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">⭐ Rate Service & Provider</h3>
                 <div id="starContainer" style="font-size: 1.6rem; cursor: pointer; color: #fbbf24; margin-bottom: 0.5rem; user-select: none;">
                     <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>

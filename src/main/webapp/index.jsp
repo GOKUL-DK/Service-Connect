@@ -82,7 +82,7 @@
 
             <!-- 3-Step Interactive Process -->
             <div class="workflow-section">
-                <div style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.9rem; background: rgba(79, 70, 229, 0.08); border-radius: 9999px; color: var(--primary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem;">
+                <div style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.9rem; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 9999px; color: #818cf8; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem;">
                     💡 Simple & Seamless
                 </div>
                 <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--secondary); letter-spacing: -0.02em;">How ServiceConnect Operates</h2>
@@ -91,19 +91,19 @@
                 <div class="workflow-grid">
                     <div class="workflow-card">
                         <div class="workflow-step-num">01</div>
-                        <div class="workflow-card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">📍</div>
+                        <div class="workflow-card-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">📍</div>
                         <div class="workflow-card-title">1. Set Radius & Landmark</div>
                         <div class="workflow-card-desc">Enter your street or tap <em>Use My GPS</em>. The Haversine spherical algorithm calculates exact distances to available providers within 2km - 15km.</div>
                     </div>
                     <div class="workflow-card">
                         <div class="workflow-step-num">02</div>
-                        <div class="workflow-card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent);">💬</div>
+                        <div class="workflow-card-icon" style="background: rgba(6, 182, 212, 0.15); color: var(--accent);">💬</div>
                         <div class="workflow-card-title">2. Real-Time Allocation & Chat</div>
                         <div class="workflow-card-desc">Review technician profiles and rates calculated by the XML Rule Engine. Message directly via live chat with sound chime alerts.</div>
                     </div>
                     <div class="workflow-card">
                         <div class="workflow-step-num">03</div>
-                        <div class="workflow-card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">🔑</div>
+                        <div class="workflow-card-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--success);">🔑</div>
                         <div class="workflow-card-title">3. Secure OTP Handshake</div>
                         <div class="workflow-card-desc">Upon job completion, exchange your confidential 4-digit security code for verification, instant billing receipt, and review logging.</div>
                     </div>
@@ -159,10 +159,10 @@
         </section>
 
         <!-- Trust & Security Commitment Strip -->
-        <section class="card" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(6, 182, 212, 0.04) 100%); border: 1.5px dashed rgba(99, 102, 241, 0.35);">
+        <section class="card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%); border: 1px solid rgba(99, 102, 241, 0.35); box-shadow: 0 0 35px rgba(99, 102, 241, 0.15);">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
                 <div style="max-width: 650px;">
-                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem;">
                         🛡️ Safety, Transparency & Dispute Protection
                     </div>
                     <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.4rem;">

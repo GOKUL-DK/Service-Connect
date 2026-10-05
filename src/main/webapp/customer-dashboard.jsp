@@ -75,11 +75,15 @@
             margin: 0 !important;
         }
         .modal-dialog {
-            background: #ffffff !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(24px) !important;
+            -webkit-backdrop-filter: blur(24px) !important;
             width: 100% !important;
             max-width: 520px !important;
-            border-radius: 14px !important;
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.45), 0 0 0 1px rgba(226, 232, 240, 0.8) !important;
+            border-radius: 16px !important;
+            border: 1px solid var(--border) !important;
+            box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(99, 102, 241, 0.25) !important;
+            color: var(--text-main) !important;
             display: flex !important;
             flex-direction: column !important;
             overflow: hidden !important;
@@ -120,7 +124,7 @@
             String cMsg = request.getParameter("msg");
             if ("complaintFiled".equalsIgnoreCase(cMsg)) { 
         %>
-            <div class="alert alert-success" style="margin-bottom: 1.5rem; background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ Your grievance complaint has been securely escalated to the Administrator for investigation.
             </div>
         <% } %>
@@ -369,7 +373,7 @@
                                             </button>
                                             <% if ("COMPLETED".equalsIgnoreCase(b.getStatus())) { %>
                                                 <% if (b.getRating() > 0) { %>
-                                                    <span style="color: #f59e0b; font-size: 0.82rem; font-weight: 700; padding: 0.25rem 0.5rem; background: #fffbeb; border-radius: 6px; border: 1px solid #fde68a;">★ <%= b.getRating() %></span>
+                                                    <span style="color: #fbbf24; font-size: 0.82rem; font-weight: 700; padding: 0.25rem 0.5rem; background: rgba(245, 158, 11, 0.14); border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.35);">★ <%= b.getRating() %></span>
                                                 <% } else { %>
                                                     <button type="button" class="btn btn-success action-pill" onclick="openReviewModal(<%= b.getBookingId() %>)" title="Rate & Review">
                                                         ⭐ Rate

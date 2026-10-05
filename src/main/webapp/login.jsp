@@ -38,21 +38,18 @@
     <title>Sign In or Register - ServiceConnect</title>
     <link rel="stylesheet" href="css/style.css?v=<%= System.currentTimeMillis() %>">
     <style>
-        body {
-            background: radial-gradient(circle at 10% 20%, rgba(238, 242, 255, 0.85) 0%, rgba(248, 250, 252, 1) 90%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
         .auth-container {
-            max-width: 540px;
-            margin: 2rem auto;
+            max-width: 520px;
+            margin: 2.5rem auto;
             width: 100%;
         }
         .auth-card {
-            background: #ffffff;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.9);
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(99, 102, 241, 0.18);
             padding: 2.25rem;
             position: relative;
             overflow: hidden;
@@ -63,23 +60,23 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: var(--primary-gradient);
         }
         /* Top Navigation Tabs: Sign In vs Create Account */
         .auth-switcher {
             display: flex;
-            background: #f1f5f9;
+            background: rgba(30, 41, 59, 0.6);
             border-radius: 12px;
             padding: 4px;
             gap: 4px;
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.5rem;
             border: 1px solid var(--border);
         }
         .auth-tab-btn {
             flex: 1;
             padding: 0.75rem 1rem;
-            border: none;
+            border: 1px solid transparent;
             background: transparent;
             font-size: 0.92rem;
             font-weight: 700;
@@ -92,10 +89,15 @@
             justify-content: center;
             gap: 0.4rem;
         }
+        .auth-tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
         .auth-tab-btn.active {
-            background: #ffffff;
-            color: var(--primary);
-            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+            background: rgba(99, 102, 241, 0.25);
+            color: #ffffff;
+            border-color: rgba(99, 102, 241, 0.45);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
         }
         /* Role Choice Cards: Customer vs Service Worker */
         .role-choice-grid {
@@ -105,13 +107,13 @@
             margin-bottom: 1.35rem;
         }
         .role-choice-card {
-            border: 2px solid var(--border);
+            border: 1.5px solid var(--border);
             border-radius: 12px;
             padding: 0.9rem 0.85rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            background: #ffffff;
+            background: rgba(30, 41, 59, 0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -120,13 +122,13 @@
         }
         .role-choice-card:hover {
             border-color: var(--primary);
-            background: #f8faff;
+            background: rgba(99, 102, 241, 0.15);
             transform: translateY(-2px);
         }
         .role-choice-card.selected {
             border-color: var(--primary);
-            background: var(--primary-light);
-            box-shadow: 0 0 0 1px var(--primary);
+            background: rgba(99, 102, 241, 0.22);
+            box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
         }
         .role-choice-card .role-icon {
             font-size: 1.6rem;
@@ -134,7 +136,7 @@
         .role-choice-card .role-title {
             font-size: 0.92rem;
             font-weight: 700;
-            color: var(--secondary);
+            color: #ffffff;
         }
         .role-choice-card .role-desc {
             font-size: 0.75rem;
@@ -162,7 +164,7 @@
         <div class="auth-card">
             <!-- Header Icon & Brand -->
             <div style="text-align: center; margin-bottom: 1.5rem;">
-                <div style="width: 56px; height: 56px; background: var(--primary-light); color: var(--primary); border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 0.65rem; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.2);">
+                <div style="width: 58px; height: 58px; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35); color: #818cf8; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.85rem; margin-bottom: 0.65rem; box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);">
                     ⚡
                 </div>
                 <h1 id="authMainTitle" class="card-title" style="font-size: 1.65rem; justify-content: center; margin-bottom: 0.3rem;">
@@ -200,6 +202,35 @@
                  TAB 1: SIGN IN FORM
                  ========================================== -->
             <div id="signInSection" style="<%= "register".equalsIgnoreCase(activeTab) ? "display: none;" : "display: block;" %>">
+                <!-- 1-Click Quick Demo Credentials Pill Selector -->
+                <div class="demo-creds-wrapper">
+                    <div class="demo-creds-title">
+                        <span>⚡ 1-Click Demo Accounts:</span>
+                    </div>
+                    <div class="demo-creds-grid">
+                        <div class="demo-cred-pill" onclick="fillDemoCred('john', 'password123')">
+                            <span class="demo-cred-role">👤 Customer</span>
+                            <span class="demo-cred-user">john</span>
+                            <span class="demo-cred-pass">password123</span>
+                        </div>
+                        <div class="demo-cred-pill" onclick="fillDemoCred('ramesh', 'pass123')">
+                            <span class="demo-cred-role">⚡ Electrician</span>
+                            <span class="demo-cred-user">ramesh</span>
+                            <span class="demo-cred-pass">pass123</span>
+                        </div>
+                        <div class="demo-cred-pill" onclick="fillDemoCred('suresh', 'pass123')">
+                            <span class="demo-cred-role">🚰 Plumber</span>
+                            <span class="demo-cred-user">suresh</span>
+                            <span class="demo-cred-pass">pass123</span>
+                        </div>
+                        <div class="demo-cred-pill" onclick="fillDemoCred('admin', 'admin123')">
+                            <span class="demo-cred-role">🛡️ Admin</span>
+                            <span class="demo-cred-user">admin</span>
+                            <span class="demo-cred-pass">admin123</span>
+                        </div>
+                    </div>
+                </div>
+
                 <form action="login" method="POST" id="loginForm">
                     <div class="form-group">
                         <label class="form-label" for="loginUsername">Username</label>
@@ -280,8 +311,8 @@
                     </div>
 
                     <!-- Worker-Specific Additional Fields -->
-                    <div id="workerExtraFields" style="display: none; background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 1.15rem; margin-top: 0.75rem; margin-bottom: 1.15rem;">
-                        <div style="font-weight: 700; color: var(--secondary); font-size: 0.88rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
+                    <div id="workerExtraFields" style="display: none; background: rgba(30, 41, 59, 0.6); border: 1px solid var(--border); border-radius: 12px; padding: 1.15rem; margin-top: 0.75rem; margin-bottom: 1.15rem;">
+                        <div style="font-weight: 700; color: #ffffff; font-size: 0.88rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
                             <span>🛠️ Service Worker Profile Details</span>
                         </div>
 
@@ -362,6 +393,15 @@
                 subTitle.textContent = "Access your account dashboard and active tasks";
                 document.getElementById('loginUsername').focus();
             }
+        }
+
+        function fillDemoCred(user, pass) {
+            switchAuthMode('signin');
+            const uField = document.getElementById('loginUsername');
+            const pField = document.getElementById('loginPassword');
+            uField.value = user;
+            pField.value = pass;
+            pField.focus();
         }
 
         function selectRegisterRole(role) {

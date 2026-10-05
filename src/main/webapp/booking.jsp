@@ -97,7 +97,7 @@
                     </div>
                     <div style="display: flex; justify-content: space-between;">
                         <span>📞 Provider Contact:</span>
-                        <code style="background: #fff; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border);"><%= provider.getPhone() %></code>
+                        <code style="background: rgba(15, 23, 42, 0.6); color: #a5b4fc; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace;"><%= provider.getPhone() %></code>
                     </div>
                     <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: 0.5rem; font-size: 1.05rem;">
                         <span style="font-weight: 700; color: var(--secondary);">Estimated Service Charge:</span>

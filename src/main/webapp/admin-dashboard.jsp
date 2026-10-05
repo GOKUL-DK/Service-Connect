@@ -86,27 +86,27 @@
             String msg = request.getParameter("msg");
             if ("userDeleted".equalsIgnoreCase(msg)) { 
         %>
-            <div class="alert alert-success" style="margin-bottom: 1.5rem; background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ User account has been successfully removed from the system.
             </div>
         <%  } else if ("providerDeleted".equalsIgnoreCase(msg)) { %>
-            <div class="alert alert-success" style="margin-bottom: 1.5rem; background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ Worker/Service Provider has been successfully removed from the application roster.
             </div>
         <%  } else if ("complaintUpdated".equalsIgnoreCase(msg)) { %>
-            <div class="alert alert-success" style="margin-bottom: 1.5rem; background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ Grievance complaint status updated successfully.
             </div>
         <%  } else if ("complaintDeleted".equalsIgnoreCase(msg)) { %>
-            <div class="alert alert-success" style="margin-bottom: 1.5rem; background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ Grievance complaint record has been permanently deleted.
             </div>
         <%  } else if ("allResolved".equalsIgnoreCase(msg)) { %>
-            <div class="alert alert-success" style="margin-bottom: 1.5rem; background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ All pending grievances have been marked as Resolved.
             </div>
         <%  } else if ("closedCleared".equalsIgnoreCase(msg)) { %>
-            <div class="alert alert-success" style="margin-bottom: 1.5rem; background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ Closed and dismissed grievance records have been cleared from the queue.
             </div>
         <%  } %>
@@ -562,17 +562,26 @@
                 datasets: [{
                     data: catData.length > 0 ? catData : [5, 3, 2],
                     backgroundColor: [
-                        '#4f46e5', '#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#14b8a6'
+                        '#6366f1', '#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#14b8a6'
                     ],
                     borderWidth: 2,
-                    borderColor: '#ffffff'
+                    borderColor: 'rgba(15, 23, 42, 0.95)'
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom', labels: { font: { family: 'Plus Jakarta Sans', size: 11 } } }
+                    legend: { 
+                        position: 'bottom', 
+                        labels: { 
+                            color: '#cbd5e1',
+                            font: { family: 'Plus Jakarta Sans', size: 12, weight: 600 },
+                            padding: 14,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        } 
+                    }
                 }
             }
         });
@@ -599,8 +608,9 @@
                 datasets: [{
                     label: 'Bookings',
                     data: statusData.length > 0 ? statusData : [4, 3, 2, 5],
-                    backgroundColor: '#4f46e5',
-                    borderRadius: 6
+                    backgroundColor: '#6366f1',
+                    hoverBackgroundColor: '#818cf8',
+                    borderRadius: 8
                 }]
             },
             options: {
@@ -609,11 +619,11 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { stepSize: 1, font: { family: 'Plus Jakarta Sans' } },
-                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                        ticks: { stepSize: 1, color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 } },
+                        grid: { color: 'rgba(255, 255, 255, 0.06)' }
                     },
                     x: {
-                        ticks: { font: { family: 'Plus Jakarta Sans' } },
+                        ticks: { color: '#cbd5e1', font: { family: 'Plus Jakarta Sans', size: 11, weight: 600 } },
                         grid: { display: false }
                     }
                 },

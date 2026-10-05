@@ -54,11 +54,15 @@
             margin: 0 !important;
         }
         .modal-dialog {
-            background: #ffffff !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(24px) !important;
+            -webkit-backdrop-filter: blur(24px) !important;
             width: 100% !important;
             max-width: 520px !important;
-            border-radius: 14px !important;
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.45), 0 0 0 1px rgba(226, 232, 240, 0.8) !important;
+            border-radius: 16px !important;
+            border: 1px solid var(--border) !important;
+            box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(99, 102, 241, 0.25) !important;
+            color: var(--text-main) !important;
             display: flex !important;
             flex-direction: column !important;
             overflow: hidden !important;
@@ -109,7 +113,7 @@
         <% } else if ("availabilityUpdated".equals(msg)) { %>
             <div class="alert alert-success">✓ Operating hours and availability status saved!</div>
         <% } else if ("complaintFiled".equals(msg)) { %>
-            <div class="alert alert-success" style="background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; padding: 0.85rem 1.25rem; border-radius: 8px;">
+            <div class="alert alert-success" style="margin-bottom: 1.5rem;">
                 ✅ Your grievance regarding customer conduct has been escalated to Administration for review.
             </div>
         <% } else if (error != null) { %>
@@ -179,7 +183,7 @@
                 <% } else { %>
                     <div style="display: flex; flex-direction: column; gap: 1.25rem;">
                         <% for (Booking job : jobs) { %>
-                            <div style="border: 1px solid var(--border-light); border-left: 4px solid var(--primary); border-radius: var(--radius-sm); padding: 1.5rem; background: #fff; box-shadow: var(--shadow-sm); transition: var(--transition);">
+                            <div style="border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; background: rgba(15, 23, 42, 0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-md); transition: var(--transition);">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
                                     <div style="display: flex; align-items: center; gap: 0.75rem;">
                                         <code style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: var(--secondary); background: var(--bg-card-alt); padding: 0.2rem 0.55rem; border-radius: 6px; border: 1px solid var(--border);">#<%= job.getBookingId() %></code>
@@ -264,8 +268,8 @@
 
                                 <!-- Inline Incident Reporting Drawer directly inside Service Card -->
                                 <div id="inlineReport-<%= job.getBookingId() %>" class="inline-report-panel" style="display: none;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid #fecaca; padding-bottom: 0.5rem;">
-                                        <div style="font-weight: 700; color: #b91c1c; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(239, 68, 68, 0.25); padding-bottom: 0.5rem;">
+                                        <div style="font-weight: 700; color: #f87171; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem;">
                                             <span>⚠️ Report Customer: <%= job.getUserName() %></span>
                                             <span class="badge badge-requested" style="font-size: 0.7rem;">Job #<%= job.getBookingId() %></span>
                                         </div>
@@ -279,7 +283,7 @@
                                         <input type="hidden" name="targetRole" value="CUSTOMER">
 
                                         <div class="form-group" style="margin-bottom: 0.65rem;">
-                                            <label class="form-label" style="font-size: 0.8rem; font-weight: 700; color: #991b1b;">Grievance Category</label>
+                                            <label class="form-label" style="font-size: 0.8rem; font-weight: 700; color: #fca5a5;">Grievance Category</label>
                                             <select name="complaintType" class="form-select" style="font-size: 0.85rem; padding: 0.4rem 0.65rem;" required>
                                                 <option value="Customer Abusive Behavior">Abusive or Threatening Behavior</option>
                                                 <option value="Payment Refusal / Rate Dispute">Refusal to pay or disputing agreed rate</option>
@@ -291,7 +295,7 @@
                                         </div>
 
                                         <div class="form-group" style="margin-bottom: 0.75rem;">
-                                            <label class="form-label" style="font-size: 0.8rem; font-weight: 700; color: #991b1b;">Incident Description</label>
+                                            <label class="form-label" style="font-size: 0.8rem; font-weight: 700; color: #fca5a5;">Incident Description</label>
                                             <textarea name="description" class="form-control" rows="3" style="font-size: 0.85rem;" placeholder="Detail what occurred with the customer directly on this service..." required></textarea>
                                         </div>
 
