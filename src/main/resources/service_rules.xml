@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceRules>
+    <!-- Configurable search parameters -->
+    <search>
+        <defaultRadius>5</defaultRadius>
+        <maximumRadius>15</maximumRadius>
+    </search>
+
+    <!-- Service-specific business rules and estimated duration in minutes -->
+    <services>
+        <service name="Plumbing">
+            <averageDuration>60</averageDuration>
+            <baseFee>350</baseFee>
+        </service>
+        <service name="Electrical Repair">
+            <averageDuration>45</averageDuration>
+            <baseFee>300</baseFee>
+        </service>
+        <service name="Carpentry">
+            <averageDuration>90</averageDuration>
+            <baseFee>450</baseFee>
+        </service>
+        <service name="AC Service">
+            <averageDuration>60</averageDuration>
+            <baseFee>500</baseFee>
+        </service>
+        <service name="Appliance Repair">
+            <averageDuration>60</averageDuration>
+            <baseFee>400</baseFee>
+        </service>
+        <service name="Computer Repair">
+            <averageDuration>75</averageDuration>
+            <baseFee>400</baseFee>
+        </service>
+        <service name="Painting">
+            <averageDuration>120</averageDuration>
+            <baseFee>600</baseFee>
+        </service>
+        <service name="Cleaning">
+            <averageDuration>90</averageDuration>
+            <baseFee>350</baseFee>
+        </service>
+        <service name="Vehicle Repair">
+            <averageDuration>60</averageDuration>
+            <baseFee>450</baseFee>
+        </service>
+        <service name="Home Maintenance">
+            <averageDuration>60</averageDuration>
+            <baseFee>350</baseFee>
+        </service>
+        <service name="Pest Control">
+            <averageDuration>90</averageDuration>
+            <baseFee>450</baseFee>
+        </service>
+        <service name="Solar Panel Service">
+            <averageDuration>75</averageDuration>
+            <baseFee>550</baseFee>
+        </service>
+        <service name="Gardening &amp; Lawn Care">
+            <averageDuration>90</averageDuration>
+            <baseFee>400</baseFee>
+        </service>
+        <service name="CCTV &amp; Smart Security">
+            <averageDuration>60</averageDuration>
+            <baseFee>500</baseFee>
+        </service>
+    </services>
+</serviceRules>
