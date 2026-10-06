@@ -186,7 +186,7 @@
                             <div style="border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; background: rgba(15, 23, 42, 0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-md); transition: var(--transition);">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
                                     <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                        <code style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: var(--secondary); background: var(--bg-card-alt); padding: 0.2rem 0.55rem; border-radius: 6px; border: 1px solid var(--border);">#<%= job.getBookingId() %></code>
+                                        <code style="font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: var(--secondary); background: var(--bg-card-alt); padding: 0.2rem 0.55rem; border-radius: 6px; border: 1px solid var(--border);"><strong>Booking #<%= job.getBookingId() %></strong></code>
                                         <span class="badge badge-requested" style="font-size: 0.75rem;"><%= job.getServiceName() %></span>
                                         <% if (job.isEmergency()) { %>
                                             <span class="badge badge-emergency" style="font-size: 0.75rem;">🚨 EMERGENCY SOS</span>
@@ -256,7 +256,7 @@
                                                    title="Enter 4-digit customer OTP"
                                                    style="width: 100px; text-align: center; font-weight: 700; letter-spacing: 2px; font-size: 0.85rem; padding: 0.35rem 0.5rem;" required>
                                             <button type="submit" class="btn btn-primary action-pill complete-job-btn" id="completeBtn-<%= job.getBookingId() %>">
-                                                ✓ COMPLETE
+                                                ✓ COMPLETE SERVICE
                                             </button>
                                         </form>
                                     <% } else if ("COMPLETED".equalsIgnoreCase(job.getStatus())) { %>
