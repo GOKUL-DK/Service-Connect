@@ -61,12 +61,30 @@ public class DBConnection {
                         String host = uri.getHost();
                         int port = uri.getPort() == -1 ? 3306 : uri.getPort();
                         String path = uri.getPath(); // /dbname
-                        dbUrl = "jdbc:mysql://" + host + ":" + port + path + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+                        dbUrl = "jdbc:mysql://" + host + ":" + port + path + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&connectTimeout=5000";
                     } catch (Exception e) {
                         System.err.println("Failed to parse cloud database URI: " + e.getMessage());
                     }
                 } else if (connUrl.startsWith("jdbc:")) {
                     dbUrl = connUrl;
+                }
+            }
+        }
+
+        // Support Railway individual variables (MYSQLHOST, MYSQLPORT, MYSQLUSER, etc.)
+        if (dbUrl == null || dbUrl.trim().isEmpty()) {
+            String mysqlHost = System.getenv("MYSQLHOST");
+            if (mysqlHost != null && !mysqlHost.trim().isEmpty()) {
+                String port = System.getenv("MYSQLPORT");
+                if (port == null || port.trim().isEmpty()) port = "3306";
+                String dbName = System.getenv("MYSQLDATABASE");
+                if (dbName == null || dbName.trim().isEmpty()) dbName = "railway";
+                dbUrl = "jdbc:mysql://" + mysqlHost.trim() + ":" + port.trim() + "/" + dbName.trim() + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&connectTimeout=5000";
+                if (dbUser == null || dbUser.trim().isEmpty()) {
+                    dbUser = System.getenv("MYSQLUSER");
+                }
+                if (dbPass == null || dbPass.trim().isEmpty()) {
+                    dbPass = System.getenv("MYSQLPASSWORD");
                 }
             }
         }
