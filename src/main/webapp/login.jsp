@@ -39,17 +39,17 @@
     <link rel="stylesheet" href="css/style.css?v=<%= System.currentTimeMillis() %>">
     <style>
         .auth-container {
-            max-width: 520px;
+            max-width: 480px;
             margin: 2.5rem auto;
             width: 100%;
         }
         .auth-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(99, 102, 241, 0.18);
+            background: rgba(20, 26, 36, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
             padding: 2.25rem;
             position: relative;
             overflow: hidden;
@@ -60,28 +60,28 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: var(--primary-gradient);
+            height: 2px;
+            background: linear-gradient(90deg, #4f5be8 0%, #38bdf8 100%);
         }
         /* Top Navigation Tabs: Sign In vs Create Account */
         .auth-switcher {
             display: flex;
-            background: rgba(30, 41, 59, 0.6);
-            border-radius: 12px;
+            background: rgba(14, 18, 25, 0.7);
+            border-radius: 10px;
             padding: 4px;
             gap: 4px;
             margin-bottom: 1.5rem;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
         .auth-tab-btn {
             flex: 1;
-            padding: 0.75rem 1rem;
+            padding: 0.7rem 0.9rem;
             border: 1px solid transparent;
             background: transparent;
-            font-size: 0.92rem;
-            font-weight: 700;
+            font-size: 0.88rem;
+            font-weight: 600;
             color: var(--text-muted);
-            border-radius: 9px;
+            border-radius: 7px;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
@@ -91,13 +91,13 @@
         }
         .auth-tab-btn:hover {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
         }
         .auth-tab-btn.active {
-            background: rgba(99, 102, 241, 0.25);
-            color: #ffffff;
-            border-color: rgba(99, 102, 241, 0.45);
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            color: #f1f5f9;
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         /* Role Choice Cards: Customer vs Service Worker */
         .role-choice-grid {
@@ -107,13 +107,13 @@
             margin-bottom: 1.35rem;
         }
         .role-choice-card {
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 11px;
             padding: 0.9rem 0.85rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(18, 24, 33, 0.6);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -121,20 +121,20 @@
             user-select: none;
         }
         .role-choice-card:hover {
-            border-color: var(--primary);
-            background: rgba(99, 102, 241, 0.15);
-            transform: translateY(-2px);
+            border-color: rgba(79, 91, 232, 0.4);
+            background: rgba(79, 91, 232, 0.06);
+            transform: translateY(-1px);
         }
         .role-choice-card.selected {
-            border-color: var(--primary);
-            background: rgba(99, 102, 241, 0.22);
-            box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+            border-color: #4f5be8;
+            background: rgba(79, 91, 232, 0.12);
+            box-shadow: 0 0 0 1px #4f5be8;
         }
         .role-choice-card .role-icon {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
         }
         .role-choice-card .role-title {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #ffffff;
         }
@@ -164,10 +164,10 @@
         <div class="auth-card">
             <!-- Header Icon & Brand -->
             <div style="text-align: center; margin-bottom: 1.5rem;">
-                <div style="width: 58px; height: 58px; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35); color: #818cf8; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.85rem; margin-bottom: 0.65rem; box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);">
+                <div style="width: 50px; height: 50px; background: rgba(79, 91, 232, 0.1); border: 1px solid rgba(79, 91, 232, 0.22); color: #818cf8; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 0.65rem;">
                     ⚡
                 </div>
-                <h1 id="authMainTitle" class="card-title" style="font-size: 1.65rem; justify-content: center; margin-bottom: 0.3rem;">
+                <h1 id="authMainTitle" class="card-title" style="font-size: 1.55rem; justify-content: center; margin-bottom: 0.3rem;">
                     <%= "register".equalsIgnoreCase(activeTab) ? "Create Your Account" : "Sign In to ServiceConnect" %>
                 </h1>
                 <p id="authSubTitle" style="font-size: 0.88rem; color: var(--text-muted);">
@@ -202,35 +202,6 @@
                  TAB 1: SIGN IN FORM
                  ========================================== -->
             <div id="signInSection" style="<%= "register".equalsIgnoreCase(activeTab) ? "display: none;" : "display: block;" %>">
-                <!-- 1-Click Quick Demo Credentials Pill Selector -->
-                <div class="demo-creds-wrapper">
-                    <div class="demo-creds-title">
-                        <span>⚡ 1-Click Demo Accounts:</span>
-                    </div>
-                    <div class="demo-creds-grid">
-                        <div class="demo-cred-pill" onclick="fillDemoCred('john', 'password123')">
-                            <span class="demo-cred-role">👤 Customer</span>
-                            <span class="demo-cred-user">john</span>
-                            <span class="demo-cred-pass">password123</span>
-                        </div>
-                        <div class="demo-cred-pill" onclick="fillDemoCred('ramesh', 'pass123')">
-                            <span class="demo-cred-role">⚡ Electrician</span>
-                            <span class="demo-cred-user">ramesh</span>
-                            <span class="demo-cred-pass">pass123</span>
-                        </div>
-                        <div class="demo-cred-pill" onclick="fillDemoCred('suresh', 'pass123')">
-                            <span class="demo-cred-role">🚰 Plumber</span>
-                            <span class="demo-cred-user">suresh</span>
-                            <span class="demo-cred-pass">pass123</span>
-                        </div>
-                        <div class="demo-cred-pill" onclick="fillDemoCred('admin', 'admin123')">
-                            <span class="demo-cred-role">🛡️ Admin</span>
-                            <span class="demo-cred-user">admin</span>
-                            <span class="demo-cred-pass">admin123</span>
-                        </div>
-                    </div>
-                </div>
-
                 <form action="login" method="POST" id="loginForm">
                     <div class="form-group">
                         <label class="form-label" for="loginUsername">Username</label>
@@ -393,15 +364,6 @@
                 subTitle.textContent = "Access your account dashboard and active tasks";
                 document.getElementById('loginUsername').focus();
             }
-        }
-
-        function fillDemoCred(user, pass) {
-            switchAuthMode('signin');
-            const uField = document.getElementById('loginUsername');
-            const pField = document.getElementById('loginPassword');
-            uField.value = user;
-            pField.value = pass;
-            pField.focus();
         }
 
         function selectRegisterRole(role) {

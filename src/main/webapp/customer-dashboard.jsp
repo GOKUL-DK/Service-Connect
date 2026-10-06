@@ -82,7 +82,7 @@
             max-width: 520px !important;
             border-radius: 16px !important;
             border: 1px solid var(--border) !important;
-            box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(99, 102, 241, 0.25) !important;
+            box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6) !important;
             color: var(--text-main) !important;
             display: flex !important;
             flex-direction: column !important;
