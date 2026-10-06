@@ -27,14 +27,61 @@ public class DBConnection {
 
     /**
      * Obtains a new JDBC Connection from DriverManager.
+     * Supports cloud environments (Render, Railway, Docker) via environment variables,
+     * System properties, or local fallback.
      * @return Connection object
      * @throws SQLException if a database access error occurs
      */
     public static Connection getConnection() throws SQLException {
-        // Allows overriding via System property if needed in different lab environments
-        String dbUrl = System.getProperty("db.url", URL);
-        String dbUser = System.getProperty("db.user", USER);
-        String dbPass = System.getProperty("db.password", PASSWORD);
+        String dbUrl = System.getenv("DB_URL");
+        String dbUser = System.getenv("DB_USER");
+        String dbPass = System.getenv("DB_PASSWORD");
+
+        // Auto-detect common cloud connection URLs (Railway, Render, Heroku)
+        if (dbUrl == null || dbUrl.trim().isEmpty()) {
+            String connUrl = System.getenv("DATABASE_URL");
+            if (connUrl == null || connUrl.trim().isEmpty()) {
+                connUrl = System.getenv("MYSQL_URL");
+            }
+            if (connUrl == null || connUrl.trim().isEmpty()) {
+                connUrl = System.getenv("MYSQL_PUBLIC_URL");
+            }
+
+            if (connUrl != null && !connUrl.trim().isEmpty()) {
+                connUrl = connUrl.trim();
+                if (connUrl.startsWith("mysql://") || connUrl.startsWith("mysql2://")) {
+                    try {
+                        java.net.URI uri = new java.net.URI(connUrl);
+                        String userInfo = uri.getUserInfo();
+                        if (userInfo != null && userInfo.contains(":")) {
+                            String[] parts = userInfo.split(":", 2);
+                            dbUser = parts[0];
+                            dbPass = parts[1];
+                        }
+                        String host = uri.getHost();
+                        int port = uri.getPort() == -1 ? 3306 : uri.getPort();
+                        String path = uri.getPath(); // /dbname
+                        dbUrl = "jdbc:mysql://" + host + ":" + port + path + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+                    } catch (Exception e) {
+                        System.err.println("Failed to parse cloud database URI: " + e.getMessage());
+                    }
+                } else if (connUrl.startsWith("jdbc:")) {
+                    dbUrl = connUrl;
+                }
+            }
+        }
+
+        // Fallback to System properties, then local defaults
+        if (dbUrl == null || dbUrl.trim().isEmpty()) {
+            dbUrl = System.getProperty("db.url", URL);
+        }
+        if (dbUser == null || dbUser.trim().isEmpty()) {
+            dbUser = System.getProperty("db.user", USER);
+        }
+        if (dbPass == null) {
+            dbPass = System.getProperty("db.password", PASSWORD);
+        }
+
         return DriverManager.getConnection(dbUrl, dbUser, dbPass);
     }
 

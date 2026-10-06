@@ -177,3 +177,32 @@ The application includes pre-configured accounts for testing each role:
 | **Service Worker (Electrician)** | `ramesh` | `pass123` | Provider Dashboard, Job Queue, Direct Customer Messaging, Inline Incident Escalation |
 | **Service Worker (Plumber)** | `suresh` | `pass123` | Job Queue, Shift Hours / Availability Status Management, Task State Transitions |
 | **Administrator** | `admin` | `admin123` | Analytics Console, Neon Chart.js Data Visualizations, Grievance Dispute Moderation |
+
+---
+
+## 6. Cloud & Docker Deployment
+
+### Option A: 1-Click Cloud Deployment via Railway (Recommended)
+1. Fork or push this repository to your GitHub account (`GOKUL-DK/Service-Connect`).
+2. Log in to [Railway.app](https://railway.app/) and click **New Project** -> **Deploy from GitHub repo**.
+3. Select this repository. Railway automatically detects the multi-stage `Dockerfile`.
+4. Click **+ New** in your Railway project canvas and select **Database** -> **Add MySQL**.
+5. ServiceConnect automatically detects Railway's `MYSQL_URL` / `DATABASE_URL` and initializes the entire schema with predefined demo accounts on startup.
+6. Under your Web Service settings, generate a public domain (`your-app.up.railway.app`). Open it in your browser!
+
+### Option B: Cloud Deployment via Render
+1. Go to [Render.com](https://render.com/) and click **New +** -> **Web Service**.
+2. Connect your GitHub repository.
+3. Select **Docker** as the Runtime.
+4. Add your MySQL connection string under **Environment Variables**:
+   - `DATABASE_URL`: `mysql://username:password@hostname:3306/dbname`
+   *(Or set `DB_URL`, `DB_USER`, and `DB_PASSWORD` individually).*
+5. Click **Deploy Web Service**.
+
+### Option C: Local Multi-Container Run with Docker Compose
+Run both the MySQL database and the Tomcat container locally with zero manual setup:
+```bash
+docker-compose up --build
+```
+Open `http://localhost:8080/` in your browser.
+
