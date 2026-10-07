@@ -2,6 +2,7 @@ package com.serviceconnect.servlet;
 
 import com.serviceconnect.dao.UserDAO;
 import com.serviceconnect.model.User;
+import com.serviceconnect.util.AuthTokenUtil;
 import com.serviceconnect.util.CookieUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -57,15 +58,35 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("name", user.getName());
             session.setAttribute("role", user.getRole());
 
+            int provId = 0;
             if ("PROVIDER".equalsIgnoreCase(user.getRole())) {
                 com.serviceconnect.dao.ProviderDAO provDAO = new com.serviceconnect.dao.ProviderDAO();
                 com.serviceconnect.model.Provider p = provDAO.getProviderByUsername(user.getUsername());
-                session.setAttribute("providerId", p != null ? p.getProviderId() : 101);
+                provId = p != null ? p.getProviderId() : 101;
+                session.setAttribute("providerId", provId);
             }
+
+            // Set session persistence cookies for cloud & serverless resilience
+            String uidStr = String.valueOf(user.getId());
+            String roleStr = user.getRole();
+            String unameStr = user.getUsername();
+            String provIdStr = String.valueOf(provId);
+            String sig = AuthTokenUtil.sign(uidStr + "|" + roleStr + "|" + unameStr + "|" + provIdStr);
+
+            CookieUtil.setCookie(response, "sc_user_id", uidStr, 7 * 24 * 60 * 60, true);
+            CookieUtil.setCookie(response, "sc_role", roleStr, 7 * 24 * 60 * 60, true);
+            CookieUtil.setCookie(response, "sc_username", unameStr, 7 * 24 * 60 * 60, true);
+            CookieUtil.setCookie(response, "sc_sig", sig, 7 * 24 * 60 * 60, true);
+            if (provId > 0) {
+                CookieUtil.setCookie(response, "sc_provider_id", provIdStr, 7 * 24 * 60 * 60, true);
+            }
+            try {
+                CookieUtil.setCookie(response, "sc_name", java.net.URLEncoder.encode(user.getName(), "UTF-8"), 7 * 24 * 60 * 60, false);
+            } catch (Exception ignored) {}
 
             // Handle Remember Username via HTTP Cookie
             if ("on".equalsIgnoreCase(rememberMe) || "true".equalsIgnoreCase(rememberMe)) {
-                CookieUtil.setCookie(response, "rememberedUsername", user.getUsername(), 7 * 24 * 60 * 60);
+                CookieUtil.setCookie(response, "rememberedUsername", user.getUsername(), 7 * 24 * 60 * 60, false);
             } else {
                 CookieUtil.deleteCookie(response, "rememberedUsername");
             }

@@ -26,6 +26,20 @@
         errorMessage = "You do not have permission to access that resource.";
     }
 
+    if (paramError == null && loggedOut == null && session.getAttribute("userId") != null) {
+        String userRole = (String) session.getAttribute("role");
+        if ("ADMIN".equalsIgnoreCase(userRole)) {
+            response.sendRedirect(request.getContextPath() + "/admin-dashboard");
+            return;
+        } else if ("PROVIDER".equalsIgnoreCase(userRole)) {
+            response.sendRedirect(request.getContextPath() + "/provider-dashboard");
+            return;
+        } else if ("CUSTOMER".equalsIgnoreCase(userRole)) {
+            response.sendRedirect(request.getContextPath() + "/customer-dashboard.jsp");
+            return;
+        }
+    }
+
     // Load services catalog for worker trade registration dropdown
     ServiceDAO serviceDAO = new ServiceDAO();
     List<Service> services = serviceDAO.getAllServices();
